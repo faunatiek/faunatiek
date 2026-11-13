@@ -364,7 +364,7 @@ try {
 } catch {}
 const dagMin = n => new Date(Date.parse(VANDAAG) - n * 864e5).toISOString().slice(0, 10);
 const DAGEN = Array.from({ length: TERUG_MAX + 1 }, (_, n) => dagMin(n));
-const ymd = (() => { try { const d = new URLSearchParams(location.search).get("dag"); return DAGEN.includes(d) ? d : VANDAAG; } catch { return VANDAAG; } })();
+const ymd = (() => { try { const d = new URLSearchParams(location.search).get("dag"); if (d && !DAGEN.includes(d)) history.replaceState(null, "", location.pathname + location.hash); return DAGEN.includes(d) ? d : VANDAAG; } catch { return VANDAAG; } })();
 const VERLEDEN = ymd !== VANDAAG;
 const dayNo = Math.round((Date.parse(ymd) - Date.parse("2026-01-01")) / 864e5);
 const dagNaam = (d, o) => new Intl.DateTimeFormat("nl-NL", { timeZone: "UTC", ...o }).format(new Date(d + "T12:00:00Z"));
