@@ -170,9 +170,11 @@ footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
 .tl li.slot button{width:100%;border:1px dashed var(--line);background:transparent;border-radius:10px;padding:5px;font-weight:500;font-size:13px;color:var(--muted)}
 .tl li.slot button:hover{border-style:solid;border-color:var(--c);color:var(--c)}
 /* Gokhok */
-.marge{display:grid;gap:10px}
-.marge label{display:grid;grid-template-columns:5.2em minmax(6.5em,1fr) minmax(0,auto);gap:10px;align-items:center;font-weight:500;font-size:13px;color:var(--muted)}
-.marge .eenh{font-weight:700;font-size:16px;color:var(--ink);max-width:8em;line-height:1.2}
+.marge{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:4px 10px;align-items:end}
+.marge label{display:grid;gap:4px;font-weight:500;font-size:13px;color:var(--muted)}
+.marge .tot{color:var(--muted);padding-bottom:14px}
+.marge .eenh{grid-column:1/-1;margin:2px 0 0;font-size:14px;color:var(--muted)}
+.marge .eenh b{color:var(--ink);font-size:16px}
 .voorproef{margin:0;font-weight:500;min-height:1.4em}
 .voorproef b{color:var(--c)}
 .punten{display:flex;gap:3px;flex-wrap:nowrap}
@@ -838,7 +840,7 @@ function gokhok() {
     const tipHtml = () => Array.from({ length: tips() }, (_, k) => `<div><b>Tip ${k + 1}:</b> ${esc(grootteTip(VR[i][1], jaar, k + 1))}</div>`).join("");
     P.innerHTML = `<div class="stat"><span class="small">Vraag ${i + 1} van 10</span><div class="punten">${VR.map((_, j) => `<b class="${j < i ? "p" + Math.max(0, st.a[j].p) : ""}">${j < i ? st.a[j].p : ""}</b>`).join("")}</div></div>
       <p class="gq">${esc(q)}</p>
-      <form class="marge" id="gf"><label><span>Minstens</span><input id="glo" inputmode="decimal" autocomplete="off" enterkeyhint="next"><span class="eenh">${eenh}</span></label><label><span>Hoogstens</span><input id="ghi" inputmode="decimal" autocomplete="off" enterkeyhint="done"><span class="eenh">${eenh}</span></label></form>
+      <form class="marge" id="gf"><label><span>Minstens</span><input id="glo" inputmode="decimal" autocomplete="off" enterkeyhint="next"></label><span class="tot">tot</span><label><span>Hoogstens</span><input id="ghi" inputmode="decimal" autocomplete="off" enterkeyhint="done"></label><p class="eenh">${jaar ? "Antwoord als <b>jaartal</b>" : `Antwoord in <b>${eenh}</b>`}</p></form>
       <p class="voorproef" id="gv"></p>
       <div class="row"><button class="btn" form="gf">Vastleggen</button><button class="btn ghost" type="button" id="gtip"></button></div>
       <div class="msg" id="gt" style="padding-left:14px" hidden></div>
