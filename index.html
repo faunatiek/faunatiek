@@ -8,6 +8,8 @@
 <meta name="theme-color" content="#1A1916" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Bezoekersteller (GoatCounter): geen cookies, geen banner nodig. Telt elke puzzel als eigen pagina, zie tel() bij route(). -->
+<script data-goatcounter="https://NAAM.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="//gc.zgo.at/count.js" onload="window.telWacht&&goatcounter.count(window.telWacht)"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&display=swap">
 <style>
 /* Puzzel-app: diep junglegroen, kleurrijke tegels met verloop per puzzel, grote witte dierentekeningen */
@@ -912,6 +914,13 @@ function route() {
   const id = location.hash.slice(1), p = PUZZELS.find(x => x[0] === id);
   if (p) { document.documentElement.style.setProperty("--c", p[6]); p[4](); } else home();
   scrollTo(0, 0);
+  tel(p);
+}
+// Bezoekersteller: de puzzels zitten achter #wie, #kaart enz., dus elk scherm telt apart als /wie, /kaart, ... (startpagina = /).
+function tel(p) {
+  if (TESTMODUS) return;
+  const t = { path: "/" + (p ? p[0] : ""), title: p ? p[1] : "Startpagina" };
+  try { window.goatcounter?.count ? goatcounter.count(t) : (window.telWacht = t); } catch {}
 }
 addEventListener("hashchange", route);
 addEventListener("pagehide", ruimOp);
