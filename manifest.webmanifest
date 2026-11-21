@@ -1,0 +1,16 @@
+{
+  "name": "Faunatiek",
+  "short_name": "Faunatiek",
+  "description": "Elke dag vijf nieuwe puzzels over dieren, taal en tijd.",
+  "lang": "nl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F0E8",
+  "theme_color": "#F4F0E8",
+  "icons": [
+    { "src": "/iconen/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/iconen/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/iconen/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
